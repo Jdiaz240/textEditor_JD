@@ -1,4 +1,3 @@
-import { request } from 'express';
 import { openDB } from 'idb';
 
 const initdb = async () =>
@@ -24,7 +23,7 @@ export const putDb = async (content) => {
   const request = store.put({id: 1, value: content});
 
   const result = await request;
-  console.error('success', result);
+  console.error('success', result.value);
 }
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
@@ -39,6 +38,8 @@ export const getDb = async () => {
 
   const result = await request;
 
+  result ? console.log("data retrieved", result.value) : console.log("date not found");
+  
   return result?.value;
 };
 initdb();
